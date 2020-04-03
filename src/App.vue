@@ -86,11 +86,14 @@ export default {
         }
       };
 
-      axios.post(
+      let response = await axios.post(
         `https://assignment2-386c8.firebaseio.com/user.json`,
         { user: this.user },
         config
       );
+      console.log(response.data);
+
+      this.user = {};
 
       this.getData();
     },
@@ -101,8 +104,11 @@ export default {
 
       this.dataa = response.data;
     },
-    delUser() {
-      axios.delete(`https://assignment2-386c8.firebaseio.com/user.json`);
+    async delUser() {
+      let response = await axios.delete(
+        `https://assignment2-386c8.firebaseio.com/user.json`
+      );
+      console.log(response);
       this.getData();
     }
   },
